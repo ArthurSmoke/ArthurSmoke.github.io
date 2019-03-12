@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Arthur Feng">
+  
+  
+  <title>Pytest Fixture 笔记 | 洋葱的自留地</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="笔记,Pytest,Fixture,">
+  
+
+  
+  <meta name="description" content="Fixture最近在学习实践自动化相关的知识，最终选用pytest来组织测试用例，本文是pytest学习笔记的第一篇。Fixture是pytest中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。">
+
+  
+
+  <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"hAsQ9R644mgwiUM2FYIJLfez-gzGzoHsz","appkey":"4L20Fc5fxLPCV68VALRzloeP","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-03-08",
+    passwords: ["0c6ed8198a4604b1ad01223b272514a303c04f8a6cbc412e12c7e0b838ad4644", ],
+    is_post: true,
+    lock: false,
+    author: "Arthur Feng",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">xiaolong.fun</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 洋葱的自留地</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/ArthurSmoke/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-03-11
+    </span>
+    
+      <span>
+        | <a href="/categories/笔记/"><i class="fa fa-bookmark"></i>笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Pytest Fixture 笔记
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(https://i.loli.net/2019/03/13/5c87dadf04064.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <h2 id="Fixture-1"><a href="#Fixture-1" class="headerlink" title="Fixture"></a>Fixture</h2><p>最近在学习实践自动化相关的知识，最终选用pytest来组织测试用例，本文是pytest学习笔记的第一篇。<br>Fixture是pytest中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。</p>
+<h3 id="Fixture-2"><a href="#Fixture-2" class="headerlink" title="Fixture"></a>Fixture</h3><p>在被当做fixture的函数前面加上<code>@pytest.fixture</code>来定义一个Fixture<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">before</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'\nbefore each test'</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h4><ul>
+<li>function：每个test都运行，默认是function的scope</li>
+<li>class：每个class的所有test只运行一次</li>
+<li>module：每个module的所有test只运行一次</li>
+<li>session：每个session只运行一次</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture(scope="module")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smtp</span><span class="params">()</span>:</span></span><br><span class="line">    smtp = smtplib.SMTP(<span class="string">"smtp.gmail.com"</span>, <span class="number">587</span>, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">yield</span> smtp</span><br><span class="line">    <span class="comment">#yield下面是teardown内容</span></span><br><span class="line">    smtp.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_ehlo</span><span class="params">(smtp)</span>:</span></span><br><span class="line"><span class="comment">#fixture的function名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，smtp并非前面定义的function，而是function的返回值，即smtplib.SMTP</span></span><br><span class="line">    response, msg = smtp.ehlo()</span><br><span class="line">    <span class="keyword">assert</span> response == <span class="number">250</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="string">b"smtp.gmail.com"</span> <span class="keyword">in</span> msg</span><br></pre></td></tr></table></figure>
+<h4 id="conftest-py"><a href="#conftest-py" class="headerlink" title="conftest.py"></a>conftest.py</h4><p><code>conftest.py</code>是pytest的默认配置文件，可以在其中放公用的fixture或plugin。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tests</span><br><span class="line">├── conftest.py</span><br><span class="line">├── test_a.py</span><br><span class="line">├── test_b.py</span><br><span class="line">└── sub</span><br><span class="line">    ├── __init__.py</span><br><span class="line">    ├── conftest.py</span><br><span class="line">    ├── test_c.py</span><br><span class="line">    └── test_d.py</span><br></pre></td></tr></table></figure></p>
+<p><code>conftest.py</code>遵守就近原则，会优先使用层级最近的conftest中定义的Fixture。同时外层的测试用例a,b不能使用内层<code>conftest.py</code>中定义的fixture</p>
+<h3 id="Use-Fixture"><a href="#Use-Fixture" class="headerlink" title="Use Fixture"></a>Use Fixture</h3><h4 id="1-当做参数直接调用"><a href="#1-当做参数直接调用" class="headerlink" title="1. 当做参数直接调用"></a>1. 当做参数直接调用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture(scope="module")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smtp</span><span class="params">()</span>:</span></span><br><span class="line">    smtp = smtplib.SMTP(<span class="string">"smtp.gmail.com"</span>, <span class="number">587</span>, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">yield</span> smtp</span><br><span class="line">    smtp.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_ehlo</span><span class="params">(smtp)</span>:</span></span><br><span class="line">    response, msg = smtp.ehlo()</span><br><span class="line">    <span class="keyword">assert</span> response == <span class="number">250</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="string">b"smtp.gmail.com"</span> <span class="keyword">in</span> msg</span><br></pre></td></tr></table></figure>
+<p>fixture的function名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，<code>smtp</code>并非前面定义的function，而是function的返回值，即<code>smtplib.SMTP</code></p>
+<h4 id="2-在函数前用Fixture-Decorator调用"><a href="#2-在函数前用Fixture-Decorator调用" class="headerlink" title="2. 在函数前用Fixture Decorator调用"></a>2. 在函数前用Fixture Decorator调用</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.mark.usefixtures("before")</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_1</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'test_1()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test1</span>:</span></span><br><span class="line"><span class="meta">    @pytest.mark.usefixtures("before")</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_3</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'test_1()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @pytest.mark.usefixtures("before")</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_4</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'test_2()'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.usefixtures("before")</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test2</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_5</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'test_1()'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_6</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'test_2()'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="3-用Autouse调用Fixture"><a href="#3-用Autouse调用Fixture" class="headerlink" title="3. 用Autouse调用Fixture"></a>3. 用Autouse调用Fixture</h4><p>fixture decorator一个optional的参数是<code>autouse</code>, 默认设置为False。<br>当默认为False，就可以选择用上面两种方式来试用fixture。<br>当设置为True时，在一个session内的所有的test都会自动调用这个fixture。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture(autouse=True)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">before</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'\nbefore each test'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Finallizer"><a href="#Finallizer" class="headerlink" title="Finallizer"></a>Finallizer</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smtp</span><span class="params">(request)</span>:</span></span><br><span class="line">    smtp = smtplib.SMTP(<span class="string">"smtp.gmail.com"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fin</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment">#释放函数</span></span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"teardown smtp"</span>)</span><br><span class="line">        smtp.close()</span><br><span class="line">    request.addfinalizer(fin)</span><br><span class="line">    <span class="comment">#测试完成后调用</span></span><br><span class="line">    <span class="keyword">return</span> smtp</span><br></pre></td></tr></table></figure>
+<p>通过<code>addfinallizer()</code>注册释放函数</p>
+<h3 id="Parametrizing"><a href="#Parametrizing" class="headerlink" title="Parametrizing"></a>Parametrizing</h3><p>fixture可以通过参数化来循环使用预设的参数</p>
+<h4 id="1-params"><a href="#1-params" class="headerlink" title="1. params"></a>1. params</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@pytest.fixture(params=["smtp.gmail.com", "mail.python.org"])</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smtp</span><span class="params">(request)</span>:</span></span><br><span class="line">    smtp = smtplib.SMTP(request.param, <span class="number">587</span>, timeout=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">yield</span> smtp</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"finalizing %s"</span> % smtp)</span><br><span class="line">    smtp.close()</span><br></pre></td></tr></table></figure>
+<p>在<code>@pytest.fixture</code>中，指定参数<code>params</code>，就可以利用特殊对象（<code>request</code>）来引用<code>request.param</code>。 使用以上带参数的smtp的测试样例，都会被执行两次。</p>
+<h4 id="2-pytest-mark-parametrize"><a href="#2-pytest-mark-parametrize" class="headerlink" title="2. @pytest.mark.parametrize"></a>2. @pytest.mark.parametrize</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="meta">@pytest.mark.parametrize("test_input, expected", [</span></span><br><span class="line">    ([<span class="number">1</span>, <span class="number">1</span>], <span class="number">2</span>),</span><br><span class="line">    ([<span class="number">2</span>, <span class="number">2</span>], <span class="number">4</span>),</span><br><span class="line">    ([<span class="number">0</span>, <span class="number">1</span>], <span class="number">1</span>),</span><br><span class="line">])</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_add</span><span class="params">(test_input, expected)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> expected == add(test_input[<span class="number">0</span>], test_input[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="Build-in-Fixture"><a href="#Build-in-Fixture" class="headerlink" title="Build-in Fixture"></a>Build-in Fixture</h3><p><code>pytest --fixtures</code>可以列出所有可用的fixture，包括内置的、插件中的、以及当前项目定义的。</p>
+<h4 id="capsys"><a href="#capsys" class="headerlink" title="capsys"></a>capsys</h4><p><code>capsys</code>可以捕捉测试function的标准输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_print</span><span class="params">(capsys)</span>:</span></span><br><span class="line">    print(<span class="string">'hello'</span>)</span><br><span class="line">    out, err = capsys.readouterr()</span><br><span class="line">    <span class="keyword">assert</span> <span class="string">'hello'</span> == out</span><br></pre></td></tr></table></figure>
+<h4 id="tmpdir"><a href="#tmpdir" class="headerlink" title="tmpdir"></a>tmpdir</h4><p><code>tmpdir</code>则可以自动创建临时文件夹</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_path</span><span class="params">(tmpdir)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> py._path.local <span class="keyword">import</span> LocalPath</span><br><span class="line">    <span class="keyword">assert</span> isinstance(tmpdir, LocalPath)</span><br><span class="line">    <span class="keyword">from</span> os.path <span class="keyword">import</span> isdir</span><br><span class="line">    <span class="keyword">assert</span> isdir(str(tmpdir))</span><br></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://note.qidong.name/2018/01/pytest-fixture/" target="_blank" rel="noopener">《Pytest中的Fixture》</a></li>
+<li><a href="http://senarukana.github.io/2015/05/29/pytest-fixture/" target="_blank" rel="noopener">《Pytest Fixture》</a></li>
+<li><a href="https://docs.pytest.org/en/latest/fixture.html#fixture-finalization-executing-teardown-code" target="_blank" rel="noopener">《pytest fixtures: explicit, modular, scalable》</a></li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fixture-1"><span class="toc-text">Fixture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fixture-2"><span class="toc-text">Fixture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Scope"><span class="toc-text">Scope</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conftest-py"><span class="toc-text">conftest.py</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-Fixture"><span class="toc-text">Use Fixture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-当做参数直接调用"><span class="toc-text">1. 当做参数直接调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-在函数前用Fixture-Decorator调用"><span class="toc-text">2. 在函数前用Fixture Decorator调用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-用Autouse调用Fixture"><span class="toc-text">3. 用Autouse调用Fixture</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Finallizer"><span class="toc-text">Finallizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parametrizing"><span class="toc-text">Parametrizing</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-params"><span class="toc-text">1. params</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-pytest-mark-parametrize"><span class="toc-text">2. @pytest.mark.parametrize</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-in-Fixture"><span class="toc-text">Build-in Fixture</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#capsys"><span class="toc-text">capsys</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tmpdir"><span class="toc-text">tmpdir</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: Arthur Feng</div>
+      
+        <div>
+          原文链接: 
+          <a href target="_blank">https://xiaolong.fun/passages/2019-03-11-pytest-fixture-note/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Pytest/"><i class="fa fa-tags"></i>Pytest</a>
+     
+      <a href="/tags/Fixture/"><i class="fa fa-tags"></i>Fixture</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      <div class="site-comment-contanier">
+  <p id="site-comment-info">
+    <i class="fa fa-spinner fa-spin"></i> 评论加载中
+  </p>
+  <div id="site-comment">
+  </div>
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">博客推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">图书推荐</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://book.douban.com/subject/6811366/" target="_blank">《禅与摩托车维修艺术》</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://book.douban.com/subject/1817357/" target="_blank">《Rules of Play》</a>
+          </span>
+        
+      </div>
+    
+      <div class="site-footer-col">
+        <h5 class="site-footer-title">抓到我</h5>
+        
+          <span class="site-footer-item">
+            <a href="https://www.douban.com/people/Arthur623/" target="_blank">Douban</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://github.com/ArthurSmoke/" target="_blank">Github</a>
+          </span>
+        
+          <span class="site-footer-item">
+            <a href="https://steamcommunity.com/id/xiaolong_feng/" target="_blank">Steam</a>
+          </span>
+        
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: fengfeng623@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+        
+          <div>
+            <img src="/images/wechat.jpg" alt="WeChat">
+            
+              <p>WeChat</p>
+            
+          </div>
+        
+          <div>
+            <img src="/images/alipay.jpg" alt="AliPay">
+            
+              <p>AliPay</p>
+            
+          </div>
+        
+      </div>
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-reward">
+      <i class="fa fa-thumbs-up"></i>
+    </a>
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64099115-1"></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-64099115-1');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>
