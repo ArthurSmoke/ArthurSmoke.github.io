@@ -11,11 +11,6 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
 
 ## Fixture
 
-最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例，本文是 pytest 学习笔记的第一篇。
-Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。
-
-### Fixture
-
 在被当做 fixture 的函数前面加上` @pytest.fixture`来定义一个 Fixture
 
 ```python
@@ -24,7 +19,7 @@ def before():
     print('\nbefore each test')
 ```
 
-#### Scope
+### Scope
 
 -   function：每个 test 都运行，默认是 function 的 scope
 -   class：每个 class 的所有 test 只运行一次
@@ -46,7 +41,7 @@ def test_ehlo(smtp):
     assert b"smtp.gmail.com" in msg
 ```
 
-#### conftest.py
+### conftest.py
 
 `conftest.py`是 pytest 的默认配置文件，可以在其中放公用的 fixture 或 plugin。
 
@@ -64,9 +59,9 @@ tests
 
 `conftest.py`遵守就近原则，会优先使用层级最近的 conftest 中定义的 Fixture。同时外层的测试用例 a,b 不能使用内层`conftest.py`中定义的 fixture
 
-### Use Fixture
+## Use Fixture
 
-#### 1. 当做参数直接调用
+### 1. 当做参数直接调用
 
 ```python
 @pytest.fixture(scope="module")
@@ -83,7 +78,7 @@ def test_ehlo(smtp):
 
 fixture 的 function 名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，`smtp`并非前面定义的 function，而是 function 的返回值，即`smtplib.SMTP`
 
-#### 2. 在函数前用 Fixture Decorator 调用
+### 2. 在函数前用 Fixture Decorator 调用
 
 ```python
 @pytest.mark.usefixtures("before")
@@ -108,7 +103,7 @@ class Test2:
         print('test_2()')
 ```
 
-#### 3. 用 Autouse 调用 Fixture
+### 3. 用 Autouse 调用 Fixture
 
 fixture decorator 一个 optional 的参数是`autouse`, 默认设置为 False。
 当默认为 False，就可以选择用上面两种方式来试用 fixture。
@@ -120,7 +115,7 @@ def before():
     print('\nbefore each test')
 ```
 
-### Finallizer
+## Finallizer
 
 ```python
 @pytest.fixture()
@@ -137,11 +132,11 @@ def smtp(request):
 
 通过`addfinallizer()`注册释放函数
 
-### Parametrizing
+## Parametrizing
 
 fixture 可以通过参数化来循环使用预设的参数
 
-#### 1. params
+### 1. params
 
 ```python
 @pytest.fixture(params=["smtp.gmail.com", "mail.python.org"])
@@ -154,7 +149,7 @@ def smtp(request):
 
 在` @pytest.fixture`中，指定参数`params`，就可以利用特殊对象（`request`）来引用`request.param`。 使用以上带参数的 smtp 的测试样例，都会被执行两次。
 
-#### 2. @pytest.mark.parametrize
+### 2. @pytest.mark.parametrize
 
 ```python
 def add(a, b):
@@ -169,11 +164,11 @@ def test_add(test_input, expected):
     assert expected == add(test_input[0], test_input[1])
 ```
 
-### Build-in Fixture
+## Build-in Fixture
 
 `pytest --fixtures`可以列出所有可用的 fixture，包括内置的、插件中的、以及当前项目定义的。
 
-#### capsys
+### capsys
 
 `capsys`可以捕捉测试 function 的标准输出
 
@@ -184,7 +179,7 @@ def test_print(capsys):
     assert 'hello' == out
 ```
 
-#### tmpdir
+### tmpdir
 
 `tmpdir`则可以自动创建临时文件夹
 
@@ -196,7 +191,7 @@ def test_path(tmpdir):
     assert isdir(str(tmpdir))
 ```
 
-### 参考
+## 参考
 
 -   [《Pytest 中的 Fixture》](http://note.qidong.name/2018/01/pytest-fixture/)
 -   [《Pytest Fixture》](http://senarukana.github.io/2015/05/29/pytest-fixture/)

@@ -4,9 +4,6 @@
 <p>本文是 pytest 学习笔记的第一篇。</p>
 <p>Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。</p>
 <h2 id="fixture">Fixture</h2>
-<p>最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例，本文是 pytest 学习笔记的第一篇。
-Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。</p>
-<h3 id="fixture-1">Fixture</h3>
 <p>在被当做 fixture 的函数前面加上<code> @pytest.fixture</code>来定义一个 Fixture</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -20,7 +17,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="scope">Scope</h4>
+</div><h3 id="scope">Scope</h3>
 <ul>
 <li>function：每个 test 都运行，默认是 function 的 scope</li>
 <li>class：每个 class 的所有 test 只运行一次</li>
@@ -57,7 +54,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">assert</span> <span class="sa">b</span><span class="s2">&#34;smtp.gmail.com&#34;</span> <span class="ow">in</span> <span class="n">msg</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="conftestpy">conftest.py</h4>
+</div><h3 id="conftestpy">conftest.py</h3>
 <p><code>conftest.py</code>是 pytest 的默认配置文件，可以在其中放公用的 fixture 或 plugin。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -84,8 +81,8 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
 </code></pre></td></tr></table>
 </div>
 </div><p><code>conftest.py</code>遵守就近原则，会优先使用层级最近的 conftest 中定义的 Fixture。同时外层的测试用例 a,b 不能使用内层<code>conftest.py</code>中定义的 fixture</p>
-<h3 id="use-fixture">Use Fixture</h3>
-<h4 id="1-当做参数直接调用">1. 当做参数直接调用</h4>
+<h2 id="use-fixture">Use Fixture</h2>
+<h3 id="1-当做参数直接调用">1. 当做参数直接调用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -113,7 +110,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
 </code></pre></td></tr></table>
 </div>
 </div><p>fixture 的 function 名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，<code>smtp</code>并非前面定义的 function，而是 function 的返回值，即<code>smtplib.SMTP</code></p>
-<h4 id="2-在函数前用-fixture-decorator-调用">2. 在函数前用 Fixture Decorator 调用</h4>
+<h3 id="2-在函数前用-fixture-decorator-调用">2. 在函数前用 Fixture Decorator 调用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -160,7 +157,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
         <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="3-用-autouse-调用-fixture">3. 用 Autouse 调用 Fixture</h4>
+</div><h3 id="3-用-autouse-调用-fixture">3. 用 Autouse 调用 Fixture</h3>
 <p>fixture decorator 一个 optional 的参数是<code>autouse</code>, 默认设置为 False。
 当默认为 False，就可以选择用上面两种方式来试用 fixture。
 当设置为 True 时，在一个 session 内的所有的 test 都会自动调用这个 fixture。</p>
@@ -176,7 +173,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="finallizer">Finallizer</h3>
+</div><h2 id="finallizer">Finallizer</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -204,9 +201,9 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
 </code></pre></td></tr></table>
 </div>
 </div><p>通过<code>addfinallizer()</code>注册释放函数</p>
-<h3 id="parametrizing">Parametrizing</h3>
+<h2 id="parametrizing">Parametrizing</h2>
 <p>fixture 可以通过参数化来循环使用预设的参数</p>
-<h4 id="1-params">1. params</h4>
+<h3 id="1-params">1. params</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -226,7 +223,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
 </code></pre></td></tr></table>
 </div>
 </div><p>在<code> @pytest.fixture</code>中，指定参数<code>params</code>，就可以利用特殊对象（<code>request</code>）来引用<code>request.param</code>。 使用以上带参数的 smtp 的测试样例，都会被执行两次。</p>
-<h4 id="2-pytestmarkparametrize">2. @pytest.mark.parametrize</h4>
+<h3 id="2-pytestmarkparametrize">2. @pytest.mark.parametrize</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -253,9 +250,9 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">add</span><span class="p">(</span><span class="n">test_input</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_input</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="build-in-fixture">Build-in Fixture</h3>
+</div><h2 id="build-in-fixture">Build-in Fixture</h2>
 <p><code>pytest --fixtures</code>可以列出所有可用的 fixture，包括内置的、插件中的、以及当前项目定义的。</p>
-<h4 id="capsys">capsys</h4>
+<h3 id="capsys">capsys</h3>
 <p><code>capsys</code>可以捕捉测试 function 的标准输出</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -271,7 +268,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">assert</span> <span class="s1">&#39;hello&#39;</span> <span class="o">==</span> <span class="n">out</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="tmpdir">tmpdir</h4>
+</div><h3 id="tmpdir">tmpdir</h3>
 <p><code>tmpdir</code>则可以自动创建临时文件夹</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -289,7 +286,7 @@ Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用�
     <span class="k">assert</span> <span class="n">isdir</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">))</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="参考">参考</h3>
+</div><h2 id="参考">参考</h2>
 <ul>
 <li><a href="http://note.qidong.name/2018/01/pytest-fixture/" target="_blank" rel="noopener noreffer">《Pytest 中的 Fixture》</a></li>
 <li><a href="http://senarukana.github.io/2015/05/29/pytest-fixture/" target="_blank" rel="noopener noreffer">《Pytest Fixture》</a></li>
