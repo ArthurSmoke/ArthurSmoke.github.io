@@ -1,12 +1,13 @@
 # Pytest Fixture Note
 
 
-## Pytest
+最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例。
 
-最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例，本文是 pytest 学习笔记的第一篇。
+本文是 pytest 学习笔记的第一篇。
+
+<!--more-->
+
 Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。
-
-<!-- more -->
 
 ## Fixture
 

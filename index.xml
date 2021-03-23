@@ -1,1 +1,515 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>洋葱的自留地</title><link>https://xiaolong.fun/</link><description>关于 LoveIt 主题</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/index.xml" rel="self" type="application/rss+xml"/><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/pytest-fixture-note/</guid><description>Pytest 最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例，本文是 pytest 学习笔记的第一篇。 Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>洋葱的自留地</title><link>https://xiaolong.fun/</link><description>关于 LoveIt 主题</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/index.xml" rel="self" type="application/rss+xml"/><item><title>驾考宝典</title><link>https://xiaolong.fun/posts/driver-note/</link><pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/driver-note/</guid><description><![CDATA[<p>在考驾照这件事情上，我真的是拖延症晚期发作。</p>
+<p>从报名到开始考，前前后后过了 4 年时间。</p>
+<p>为了中间能回忆起之前练得内容，就把每个考试想进行了记录。</p>
+<p>这篇文章也是因为有朋友询问，索性发到博客里，也算解救写博客的懒癌晚期，一举多得。</p>
+<h2 id="科目一">科目一</h2>
+<ul>
+<li>
+<p>假一吊二撤三醉五逃终身</p>
+</li>
+<li>
+<p>站 30 口 50 禁止停车</p>
+</li>
+<li>
+<p>高速最低 60 最高 120 两车道，左 100-120，右 60-100 三车道，左 110-120，中 90-110，右 60-80</p>
+</li>
+<li>
+<p>未逃逸：3 年以下；逃逸或情节特别恶劣：3-7 年；因逃逸致人死亡：7 年以上。</p>
+</li>
+<li>
+<p>只要机动车上路行驶，就必须悬挂号牌，放置检验合格标志、保险标志，随车携带行驶证及驾驶证。缺少任何一项，交警都可依法扣留车辆。</p>
+</li>
+<li>
+<p>有 90 日选 90 日，没 90 日选 30 日</p>
+</li>
+<li>
+<p>题干中有驾驶证，选项中找驾驶证，选项中没有驾驶证找车</p>
+</li>
+<li>
+<p>车牌，驾照，酒驾，逃逸，超速 12 分</p>
+</li>
+<li>
+<p>应急车道，信号灯 6 分</p>
+</li>
+</ul>
+<h2 id="科目二">科目二</h2>
+<h3 id="倒车入库">倒车入库</h3>
+<ol>
+<li>
+<p>离合踩到底，挂挡，放手刹，压离合</p>
+</li>
+<li>
+<p>前车盖压黄线，向右打满，车头调正后回方向盘</p>
+</li>
+<li>
+<p>挂倒挡，压离合</p>
+</li>
+<li>
+<p>左后视镜下沿和黄线 1 指时，向右打满</p>
+</li>
+<li>
+<p>车身距左右平均后，方向盘回正</p>
+</li>
+<li>
+<p>调整方向，入库</p>
+</li>
+</ol>
+<h3 id="熄火启动">熄火，启动</h3>
+<ol>
+<li>先离合踩到底，挂空挡，启动</li>
+</ol>
+<h3 id="侧边停车">侧边停车</h3>
+<h4 id="进">进</h4>
+<ol>
+<li>
+<p>右后视镜红色角消失时向右打死</p>
+</li>
+<li>
+<p>左后视镜出现红色标志回正</p>
+</li>
+<li>
+<p>左后视镜后轮压线，向左打死，平行后停车</p>
+</li>
+</ol>
+<h4 id="出">出</h4>
+<ol>
+<li>
+<p>方向盘左打死不动，1 档，车前盖左边线压黄线回正</p>
+</li>
+<li>
+<p>车盖中心(雨刮左侧)压黄线向右打一圈，头正后回正</p>
+</li>
+</ol>
+<h3 id="起步">起步</h3>
+<ol>
+<li>
+<p>起步打左转向灯，</p>
+</li>
+<li>
+<p>车子移动，打右转向灯，12 点钟正对停字</p>
+</li>
+<li>
+<p>松离合，上坡，视线和两个杆子一条线，离合踩死，刹车踩死，拉手刹</p>
+</li>
+<li>
+<p>打左转向灯，松手刹，松离合，车子抖动慢慢松刹车</p>
+</li>
+<li>
+<p>过了坡开始下坡的时候离合踩到底，用刹车控制速度，左大灯往左边黄线靠</p>
+</li>
+<li>
+<p>打右转向灯，右侧门把手和黄线平时右转打死</p>
+</li>
+</ol>
+<h3 id="s-弯">S 弯</h3>
+<ol>
+<li>
+<p>车头要压住黄线向右打一圈</p>
+</li>
+<li>
+<p>左灯要压到左边最突出部分时回正</p>
+</li>
+<li>
+<p>左灯要压住右侧线时向向左打一圈，修正方向使右线沿着左灯方向</p>
+</li>
+<li>
+<p>左灯压倒左线时回正</p>
+</li>
+<li>
+<p>右侧后视镜下面压到右线，向右打满，然后回 1/4</p>
+</li>
+<li>
+<p>出弯回正，头探出窗户看左轮，修正方向到贴着线，停在收费旁，打空挡，拉手刹</p>
+</li>
+</ol>
+<h2 id="科目三">科目三</h2>
+<h3 id="场内">场内</h3>
+<ul>
+<li>
+<p>上车动一下远关灯</p>
+</li>
+<li>
+<p>转向灯，鸣笛，离合，一档，手刹</p>
+</li>
+<li>
+<p>上路后关转向灯</p>
+</li>
+<li>
+<p>直线行驶，调整好方向再进，别动</p>
+</li>
+<li>
+<p>超车，转向灯 3 秒，看后视镜再转</p>
+</li>
+<li>
+<p>隧道，给小油，速度别太难了</p>
+</li>
+<li>
+<p>出隧道后，加 4 档，上 40 码，然后减到 30 码，降到 3 档</p>
+</li>
+<li>
+<p>直角转弯后，给小油稳定在 3 档</p>
+</li>
+<li>
+<p>听指示 3 降 2，加油，2 升 3</p>
+</li>
+<li>
+<p>学校区域，送来油门，左右摇头</p>
+</li>
+<li>
+<p>右转向灯，在柱子前停下，左右摇头</p>
+</li>
+<li>
+<p>树和肩膀平齐向右打死，千万别压线</p>
+</li>
+<li>
+<p>出门前停在线前面，听指示</p>
+</li>
+</ul>
+<h3 id="左">左</h3>
+<ul>
+<li>
+<p>观察左右车流，走外圈</p>
+</li>
+<li>
+<p>右转向灯，路口停下，换一档</p>
+</li>
+<li>
+<p>人行道松开油门，左右观察</p>
+</li>
+<li>
+<p>调头打转向灯，到调头的地方，稍微向右调一下方向，在横线前停下，看后视镜，起步时向左打死方向</p>
+</li>
+</ul>
+<h3 id="右">右</h3>
+<ul>
+<li>
+<p>观察左右车流，走内圈</p>
+</li>
+<li>
+<p>左转向灯，路口停下，换一档</p>
+</li>
+<li>
+<p>调头打转向灯，到调头的地方，在横线前停下，看后视镜，车头压线向左打死</p>
+</li>
+</ul>
+<h3 id="回场内">回场内</h3>
+<ul>
+<li>
+<p>提前松开离合器，加油上坡，换 2 档</p>
+</li>
+<li>
+<p>公交车区域提前观察</p>
+</li>
+<li>
+<p>靠边停车，别压线，人和地上白点对齐就停</p>
+</li>
+</ul>
+<h3 id="其他">其他</h3>
+<ul>
+<li>
+<p>尽量 3 档</p>
+</li>
+<li>
+<p>能停就停</p>
+</li>
+<li>
+<p>别忘了转向灯</p>
+</li>
+<li>
+<p>别停在斑马线</p>
+</li>
+</ul>]]></description></item><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/posts/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/pytest-fixture-note/</guid><description><![CDATA[<p>最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例。</p>
+<p>本文是 pytest 学习笔记的第一篇。</p>
+<p>Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。</p>
+<h2 id="fixture">Fixture</h2>
+<p>最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例，本文是 pytest 学习笔记的第一篇。
+Fixture 是 pytest 中的一个基本概念，可以简单理解为在测试用例前需要执行的内容，我用来初始化环境、准备数据等工作。</p>
+<h3 id="fixture-1">Fixture</h3>
+<p>在被当做 fixture 的函数前面加上<code> @pytest.fixture</code>来定义一个 Fixture</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">before</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="scope">Scope</h4>
+<ul>
+<li>function：每个 test 都运行，默认是 function 的 scope</li>
+<li>class：每个 class 的所有 test 只运行一次</li>
+<li>module：每个 module 的所有 test 只运行一次</li>
+<li>session：每个 session 只运行一次</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">smtp</span><span class="p">():</span>
+    <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">smtp</span>
+    <span class="c1">#yield下面是teardown内容</span>
+    <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">test_ehlo</span><span class="p">(</span><span class="n">smtp</span><span class="p">):</span>
+<span class="c1">#fixture的function名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，smtp并非前面定义的function，而是function的返回值，即smtplib.SMTP</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">smtp</span><span class="o">.</span><span class="n">ehlo</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="mi">250</span>
+    <span class="k">assert</span> <span class="sa">b</span><span class="s2">&#34;smtp.gmail.com&#34;</span> <span class="ow">in</span> <span class="n">msg</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="conftestpy">conftest.py</h4>
+<p><code>conftest.py</code>是 pytest 的默认配置文件，可以在其中放公用的 fixture 或 plugin。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">tests
+├── conftest.py
+├── test_a.py
+├── test_b.py
+└── sub
+    ├── __init__.py
+    ├── conftest.py
+    ├── test_c.py
+    └── test_d.py
+</code></pre></td></tr></table>
+</div>
+</div><p><code>conftest.py</code>遵守就近原则，会优先使用层级最近的 conftest 中定义的 Fixture。同时外层的测试用例 a,b 不能使用内层<code>conftest.py</code>中定义的 fixture</p>
+<h3 id="use-fixture">Use Fixture</h3>
+<h4 id="1-当做参数直接调用">1. 当做参数直接调用</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">smtp</span><span class="p">():</span>
+    <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">smtp</span>
+    <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">test_ehlo</span><span class="p">(</span><span class="n">smtp</span><span class="p">):</span>
+    <span class="n">response</span><span class="p">,</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">smtp</span><span class="o">.</span><span class="n">ehlo</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">response</span> <span class="o">==</span> <span class="mi">250</span>
+    <span class="k">assert</span> <span class="sa">b</span><span class="s2">&#34;smtp.gmail.com&#34;</span> <span class="ow">in</span> <span class="n">msg</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>fixture 的 function 名称，可以直接作为参数，传给需要使用它的测试样例。 在使用时，<code>smtp</code>并非前面定义的 function，而是 function 的返回值，即<code>smtplib.SMTP</code></p>
+<h4 id="2-在函数前用-fixture-decorator-调用">2. 在函数前用 Fixture Decorator 调用</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_1</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Test1</span><span class="p">:</span>
+    <span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+
+    <span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_4</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
+
+<span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Test2</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">test_5</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_6</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3-用-autouse-调用-fixture">3. 用 Autouse 调用 Fixture</h4>
+<p>fixture decorator 一个 optional 的参数是<code>autouse</code>, 默认设置为 False。
+当默认为 False，就可以选择用上面两种方式来试用 fixture。
+当设置为 True 时，在一个 session 内的所有的 test 都会自动调用这个 fixture。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">before</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="finallizer">Finallizer</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">smtp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">fin</span><span class="p">():</span>
+    <span class="c1">#释放函数</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s2">&#34;teardown smtp&#34;</span><span class="p">)</span>
+        <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span>
+    <span class="c1">#测试完成后调用</span>
+    <span class="k">return</span> <span class="n">smtp</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过<code>addfinallizer()</code>注册释放函数</p>
+<h3 id="parametrizing">Parametrizing</h3>
+<p>fixture 可以通过参数化来循环使用预设的参数</p>
+<h4 id="1-params">1. params</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="s2">&#34;mail.python.org&#34;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">smtp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">smtp</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s2">&#34;finalizing </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">smtp</span><span class="p">)</span>
+    <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在<code> @pytest.fixture</code>中，指定参数<code>params</code>，就可以利用特殊对象（<code>request</code>）来引用<code>request.param</code>。 使用以上带参数的 smtp 的测试样例，都会被执行两次。</p>
+<h4 id="2-pytestmarkparametrize">2. @pytest.mark.parametrize</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&#34;test_input, expected&#34;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="n">test_input</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">expected</span> <span class="o">==</span> <span class="n">add</span><span class="p">(</span><span class="n">test_input</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_input</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="build-in-fixture">Build-in Fixture</h3>
+<p><code>pytest --fixtures</code>可以列出所有可用的 fixture，包括内置的、插件中的、以及当前项目定义的。</p>
+<h4 id="capsys">capsys</h4>
+<p><code>capsys</code>可以捕捉测试 function 的标准输出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_print</span><span class="p">(</span><span class="n">capsys</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s1">&#39;hello&#39;</span> <span class="o">==</span> <span class="n">out</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="tmpdir">tmpdir</h4>
+<p><code>tmpdir</code>则可以自动创建临时文件夹</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_path</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">py._path.local</span> <span class="kn">import</span> <span class="n">LocalPath</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="n">LocalPath</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isdir</span>
+    <span class="k">assert</span> <span class="n">isdir</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://note.qidong.name/2018/01/pytest-fixture/" target="_blank" rel="noopener noreffer">《Pytest 中的 Fixture》</a></li>
+<li><a href="http://senarukana.github.io/2015/05/29/pytest-fixture/" target="_blank" rel="noopener noreffer">《Pytest Fixture》</a></li>
+<li><a href="https://docs.pytest.org/en/latest/fixture.html#fixture-finalization-executing-teardown-code" target="_blank" rel="noopener noreffer">《pytest fixtures: explicit, modular, scalable》</a></li>
+</ul>]]></description></item></channel></rss>
