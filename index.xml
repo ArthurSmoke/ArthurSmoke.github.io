@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>洋葱的自留地</title><link>https://xiaolong.fun/</link><description>洋葱的自留地</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/index.xml" rel="self" type="application/rss+xml"/><item><title>驾考宝典</title><link>https://xiaolong.fun/posts/driver-note/</link><pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/driver-note/</guid><description><![CDATA[<div class="featured-image">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>洋葱的自留地</title><link>https://xiaolong.fun/</link><description>洋葱的自留地</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/index.xml" rel="self" type="application/rss+xml"/><item><title>驾考宝典</title><link>https://xiaolong.fun/posts/2021/driver-note/</link><pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/2021/driver-note/</guid><description><![CDATA[<div class="featured-image">
                 <img src="/images/posts/driver-note/cover.jpg" referrerpolicy="no-referrer">
             </div><p>在考驾照这件事情上，我真的是拖延症晚期发作。</p>
 <p>从报名到开始考，前前后后过了 4 年时间。</p>
@@ -226,7 +226,7 @@
 <li>
 <p>别停在斑马线</p>
 </li>
-</ul>]]></description></item><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/posts/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/pytest-fixture-note/</guid><description><![CDATA[<div class="featured-image">
+</ul>]]></description></item><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/posts/2019/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/2019/pytest-fixture-note/</guid><description><![CDATA[<div class="featured-image">
                 <img src="/images/posts/pytest-fixture-note/cover.jpg" referrerpolicy="no-referrer">
             </div><p>最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例。</p>
 <p>本文是 pytest 学习笔记的第一篇。</p>
