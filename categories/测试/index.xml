@@ -1,4 +1,4 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>测试 - 分类 - 洋葱的自留地</title><link>https://xiaolong.fun/categories/%E6%B5%8B%E8%AF%95/</link><description>测试 - 分类 - 洋葱的自留地</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/categories/%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml"/><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/posts/2019/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://xiaolong.fun/posts/2019/pytest-fixture-note/</guid><description><![CDATA[<div class="featured-image">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>测试 - 分类 - 洋葱的自留地</title><link>https://xiaolong.fun/categories/%E6%B5%8B%E8%AF%95/</link><description>测试 - 分类 - 洋葱的自留地</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 16 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://xiaolong.fun/categories/%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml"/><item><title>Pytest Fixture Note</title><link>https://xiaolong.fun/posts/2019/pytest-fixture-note/</link><pubDate>Sat, 16 Mar 2019 00:00:00 +0000</pubDate><author><name>洋葱</name></author><guid>https://xiaolong.fun/posts/2019/pytest-fixture-note/</guid><description><![CDATA[<div class="featured-image">
                 <img src="/images/posts/pytest-fixture-note/cover.jpg" referrerpolicy="no-referrer">
             </div><p>最近在学习实践自动化相关的知识，最终选用 pytest 来组织测试用例。</p>
 <p>本文是 pytest 学习笔记的第一篇。</p>
@@ -7,14 +7,14 @@
 <p>在被当做 fixture 的函数前面加上<code> @pytest.fixture</code>来定义一个 Fixture</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">before</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="scope">Scope</h3>
@@ -26,7 +26,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -40,7 +40,7 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">smtp</span><span class="p">():</span>
     <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">yield</span> <span class="n">smtp</span>
@@ -58,7 +58,7 @@
 <p><code>conftest.py</code>是 pytest 的默认配置文件，可以在其中放公用的 fixture 或 plugin。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -69,7 +69,7 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">tests
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tests
 ├── conftest.py
 ├── test_a.py
 ├── test_b.py
@@ -85,7 +85,7 @@
 <h3 id="1-当做参数直接调用">1. 当做参数直接调用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -97,7 +97,7 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&#34;module&#34;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">smtp</span><span class="p">():</span>
     <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">yield</span> <span class="n">smtp</span>
@@ -113,7 +113,7 @@
 <h3 id="2-在函数前用-fixture-decorator-调用">2. 在函数前用 Fixture Decorator 调用</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -135,26 +135,26 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_1</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Test1</span><span class="p">:</span>
-    <span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
 
-    <span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_4</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
 
-<span class="nd">@pytest.mark.usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">usefixtures</span><span class="p">(</span><span class="s2">&#34;before&#34;</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Test2</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">test_5</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_1()&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_6</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_2()&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="3-用-autouse-调用-fixture">3. 用 Autouse 调用 Fixture</h3>
@@ -163,20 +163,20 @@
 当设置为 True 时，在一个 session 内的所有的 test 都会自动调用这个 fixture。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">before</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">before each test&#39;</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="finallizer">Finallizer</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -188,12 +188,12 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">()</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">smtp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">fin</span><span class="p">():</span>
     <span class="c1">#释放函数</span>
-        <span class="k">print</span> <span class="p">(</span><span class="s2">&#34;teardown smtp&#34;</span><span class="p">)</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&#34;teardown smtp&#34;</span><span class="p">)</span>
         <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">request</span><span class="o">.</span><span class="n">addfinalizer</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span>
     <span class="c1">#测试完成后调用</span>
@@ -206,7 +206,7 @@
 <h3 id="1-params">1. params</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -214,11 +214,11 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="s2">&#34;mail.python.org&#34;</span><span class="p">])</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;smtp.gmail.com&#34;</span><span class="p">,</span> <span class="s2">&#34;mail.python.org&#34;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">smtp</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="n">smtp</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">param</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="k">yield</span> <span class="n">smtp</span>
-    <span class="k">print</span> <span class="p">(</span><span class="s2">&#34;finalizing </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">smtp</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&#34;finalizing </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">smtp</span><span class="p">)</span>
     <span class="n">smtp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></td></tr></table>
 </div>
@@ -226,7 +226,7 @@
 <h3 id="2-pytestmarkparametrize">2. @pytest.mark.parametrize</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -238,10 +238,10 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
-<span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s2">&#34;test_input, expected&#34;</span><span class="p">,</span> <span class="p">[</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&#34;test_input, expected&#34;</span><span class="p">,</span> <span class="p">[</span>
     <span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span>
     <span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
     <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span>
@@ -256,14 +256,14 @@
 <p><code>capsys</code>可以捕捉测试 function 的标准输出</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_print</span><span class="p">(</span><span class="n">capsys</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_print</span><span class="p">(</span><span class="n">capsys</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
     <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">capsys</span><span class="o">.</span><span class="n">readouterr</span><span class="p">()</span>
     <span class="k">assert</span> <span class="s1">&#39;hello&#39;</span> <span class="o">==</span> <span class="n">out</span>
 </code></pre></td></tr></table>
@@ -272,14 +272,14 @@
 <p><code>tmpdir</code>则可以自动创建临时文件夹</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_path</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">):</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">test_path</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">py._path.local</span> <span class="kn">import</span> <span class="n">LocalPath</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tmpdir</span><span class="p">,</span> <span class="n">LocalPath</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isdir</span>
