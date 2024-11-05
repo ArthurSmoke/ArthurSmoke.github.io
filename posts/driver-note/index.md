@@ -161,9 +161,6 @@
 
 -   别停在斑马线
 
--------
-This message is used to verify that this feed (feedId:76161459893621760) belongs to me (userId:75511352571992064). Join me in enjoying the next generation information browser https://follow.is.
-
 
 ---
 
